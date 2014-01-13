@@ -1,0 +1,75 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+void Nuskaitymas(int A[], int E[], double B[], int C[], int D[], int &n);
+
+int Diena(double B[], int n);
+
+int Baravykai(int C[], int n);
+
+int main()
+{
+	double B[100];
+	int A[100],
+		C[100],
+		D[100],
+		E[100],
+		n = 0,
+		k,
+		b;
+
+	Nuskaitymas(A, E, B, C, D, n);
+
+	for(int i = 0; i < n; i++)
+		cout << B[i] << endl;
+
+	k = Diena(B, n);
+
+	//cout << A[k] << " " << E[k] << endl;
+
+	b = Baravykai(C, n);
+
+	//cout << A[b] << " " << E[b] << endl;
+
+
+	return 0;
+}
+void Nuskaitymas(int A[], int E[], double B[], int C[], int D[], int &n)
+{
+	ifstream input("Duom.txt");
+
+	input >> n;
+
+	for(int i = 0; i < n; i++)
+	{
+	input >> A[i] >> E[i] >> B[i] >> C[i] >> D[i];
+	}
+}
+int Diena(double B[], int n)
+{
+	int k = 0;
+
+	for(int i = 1; i < n; i++)
+	{
+			if(B[i] > B[i - 1])
+			{
+				k = i;
+			}
+	}
+	return k;
+}
+int Baravykai(int C[], int n)
+{
+	int b = 0;
+
+	for(int i = 1; i < n; i++)
+	{
+		if(C[i] > C[i - 1])
+		{
+			b = i;
+		}
+	}
+	return b;
+}
